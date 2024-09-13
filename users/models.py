@@ -11,6 +11,9 @@ class User(AbstractUser):
     phone = models.CharField(
         max_length=50, verbose_name="Телефон", null=True, blank=True
     )
+    tg_chat_id = models.CharField(
+        max_length=150, verbose_name="телеграм chat-id", null=True, blank=True
+    )
 
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = []
