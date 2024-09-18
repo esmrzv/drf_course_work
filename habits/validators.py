@@ -27,7 +27,7 @@ class HabitTimeValidator:
 
 def related_validator(value):
     if value.get("related_habit"):
-        if value.get("pleasant_habit") is not True:
+        if not value.get("pleasant_habit"):
             raise serializers.ValidationError(
                 "В связанные привычки могут попадать только привычки с признаком "
                 "приятной привычки."
@@ -36,9 +36,10 @@ def related_validator(value):
 
 def pleasant_filter_validator(value):
     if value.get("pleasant_habit"):
-        if value.get("reward") and value.get("related_habit"):
+        if value.get("reward") or value.get("related_habit"):
             raise serializers.ValidationError(
-                "У приятной привычки не может быть вознаграждения или связанной привычки."
+                "У приятной привычки не может быть вознаграждения или связанной привычки"
+                "нельзя одновременно указать связанную привычку и вознаграждение."
             )
 
 
