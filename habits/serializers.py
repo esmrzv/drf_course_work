@@ -5,7 +5,7 @@ from habits.validators import (
     HabitsValidator,
     HabitTimeValidator,
     related_validator,
-    pleasant_filter_validator,
+    pleasant_filter_validator, HabitFilterTimeValidator,
 )
 
 
@@ -19,3 +19,8 @@ class HabitSerializer(serializers.ModelSerializer):
             related_validator,
             pleasant_filter_validator,
         ]
+
+        def validate_periodic_habit(self, value):
+            validator = HabitFilterTimeValidator()
+            validator(value)
+            return value
