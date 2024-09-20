@@ -11,4 +11,5 @@ urlpatterns = [
     path("<int:pk>/detail/", views.HabitDetailAPIView.as_view(), name="detail"),
     path("create/", views.HabitCreateAPIView.as_view(), name="create"),
     path("public-list/", views.HabitPublicListAPIView.as_view(), name="public-list"),
+
 ]
